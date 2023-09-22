@@ -1,0 +1,38 @@
+create database Escola;
+
+use escola;
+
+create table Alunos(
+ID int auto_increment primary key,
+Nome varchar(80),
+DataNascimento date,
+Genero varchar(80),
+Endereco varchar(80));
+
+create table Professores(
+ID int auto_increment primary key,
+Nome varchar(80),
+Materia varchar(80), 
+DataContratacao date);
+
+create table cursos (
+ID int auto_increment primary key,
+Nome varchar(80),
+Professores_id int,
+foreign key (Professores_id) references Professores(Id));
+
+create table Matriculas (
+ID int auto_increment primary key,
+Alunos_id int,
+Curso_id int,
+DataMatricula date,
+foreign key (Alunos_id) references Alunos(Id),
+foreign key (Curso_id) references Cursos(Id)
+);
+
+create table Notas(
+Id int auto_increment primary key,
+Matriculas_id int,
+Notas decimal(10,2),
+foreign key (Matriculas_id) references Matriculas(Id));
+
